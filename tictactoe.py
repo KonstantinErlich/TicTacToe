@@ -34,7 +34,6 @@ class TicTacToe:
             if self.player == 1:
                 print("Player 1 wins!")
 
-
     def current_player(self):
         # player toggles between 0 and 1
         self.player = 1 if self.player == 0 else 0
@@ -68,10 +67,9 @@ class TicTacToe:
         for i in range(3):
             for j in range(3):
                 if self.board[i][j] == "-":
-                    count +=1
+                    count += 1
         if count == 0 and self.won == 0:
             self.won = 2
-
 
     def player_move(self):
         while True:
@@ -171,27 +169,12 @@ class TicTacToe:
                         best_move = (i, j)
                         best_val = move_val
 
-        # return f"{best_move[0]},{best_move[1]}"
         while True:
-            if self.won == 1:
-                break
             input_str = f"{best_move[0]},{best_move[1]}"
-            try:
-                # Split the input string by comma and convert to integers
-                i, j = map(int, input_str.split(','))
-
-                # Check if the indices are within the valid range (0 to 2)
-                if 0 <= i <= 2 and 0 <= j <= 2:
-                    if self.board[i][j] != "-":
-                        print("invalid input, there is already a mark there.")
-                    else:
-                        self.board[i][j] = self.mark
-                        self.current_player()
-                        break
-                else:
-                    print("Invalid input: Indices must be between 0 and 2.")
-            except (ValueError, IndexError):
-                print("Invalid input: Please enter the input in 'i,j' format with i, j between 0 and 2.")
+            i, j = map(int, input_str.split(','))
+            self.board[i][j] = self.mark
+            self.current_player()
+            break
 
 
 t1 = TicTacToe()
